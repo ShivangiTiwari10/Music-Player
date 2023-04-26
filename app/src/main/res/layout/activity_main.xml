@@ -23,7 +23,7 @@
 
 
     <SeekBar
-        android:id="@+id/seekBar"
+        android:id="@+id/seekBarMusic"
         android:layout_width="295dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +44,7 @@
         app:layout_constraintEnd_toStartOf="@+id/pause"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar"
+        app:layout_constraintTop_toBottomOf="@+id/seekBarMusic"
         app:srcCompat="@drawable/ic_baseline_pause_24" />
 
     <ImageButton
@@ -57,7 +57,7 @@
         app:layout_constraintEnd_toStartOf="@+id/stop"
         app:layout_constraintHorizontal_bias="0.869"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar"
+        app:layout_constraintTop_toBottomOf="@+id/seekBarMusic"
         app:srcCompat="@android:drawable/ic_media_play" />
 
     <ImageButton
@@ -69,7 +69,7 @@
         android:backgroundTint="#6C63FF"
         android:contentDescription="@string/todo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar"
+        app:layout_constraintTop_toBottomOf="@+id/seekBarMusic"
         app:srcCompat="@drawable/ic_baseline_stop_24" />
 
 

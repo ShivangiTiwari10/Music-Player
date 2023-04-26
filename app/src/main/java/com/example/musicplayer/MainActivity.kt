@@ -3,7 +3,9 @@ package com.example.musicplayer
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
+import android.widget.SeekBar
 import com.example.musicplayer.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -36,12 +38,53 @@ class MainActivity : AppCompatActivity() {
 
         }
         binding.stop.setOnClickListener {
-            mediaPlayer.stop()
-            mediaPlayer.reset()
-            mediaPlayer.release()
 
-            Log.d("MusicStop", "$mediaPlayer")
+            if (mediaPlayer.isPlaying) {
+                mediaPlayer.stop()
+                mediaPlayer.reset()
+                mediaPlayer.release()
+            }
         }
-    }
 
+//         when user changes time stamp of music reflect that changes
+        binding.seekBarMusic.max = totalTime
+
+        binding.seekBarMusic.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                if (fromUser) {
+                    mediaPlayer.seekTo(progress)
+                }
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                Log.d("SeekBar", "User started touching the SeekBar")
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                Log.d("SeekBar", "User stopped touching the SeekBar")
+            }
+
+
+        })
+
+//        change the seekBar position based on music
+
+        val handler = Handler()
+        handler.postDelayed(object : Runnable {
+            override fun run() {
+                try {
+                    binding.seekBarMusic.progress = mediaPlayer.currentPosition
+                    handler.postDelayed(this, 1000)
+
+                } catch (e: Exception) {
+                    binding.seekBarMusic.progress = 0
+                    Log.d("Exaption", "${e.message}")
+                }
+
+            }
+
+
+        }, 0)
+
+    }
 }
